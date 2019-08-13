@@ -112,7 +112,7 @@ export http_proxy=http://usuario:contraseña@proxy:puerto/
 export https_proxy=http://usuario:contraseña@proxy:puerto/
 ```
 
-Si se tiene un mirror del repositorio de paquetes de Debian también es posible pasar los parámetros `--mirror=MIRROR` y `--security-mirror=MIRROR` quedando así:
+Si se tiene un mirror del repositorio de paquetes de Debian/Ubuntu también es posible pasar los parámetros `--mirror=MIRROR` y `--security-mirror=MIRROR` quedando así:
 
 ```
 lxc-create -n <nombre> -t debian -- -r buster \
