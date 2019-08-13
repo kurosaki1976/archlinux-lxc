@@ -18,7 +18,7 @@ pacman -S lxc
 
 El paquete `lxc` instala `bridge-utils` y `dnsmasq-base`, necesarios para el correcto funcionamiento de la herramienta `lxc-net`, que permite configurar un bridge simple para los contenedores. Sin embargo, podemos prescindir de esta herramienta como se verá más adelante. Esta guía utiliza el modelo de red en el que se usa un bridge compartido entre el host y los guests.
 
-Si queremos crear contenedores de Debian/Ubuntu, debemos instalar además:
+Para poder crear contenedores de Debian/Ubuntu, debemos instalar además:
 
 ```
 pacman -S debootstrap debian-archive-keyring ubuntu-keyring
