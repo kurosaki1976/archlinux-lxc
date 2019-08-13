@@ -171,10 +171,10 @@ El objetivo de esta sencilla guía es proporcionar un entorno LXC funcional sobr
 
 ## Referencias
 
-* [Linux Containers](https://wiki.archlinux.org/index.php/Linux_Containers)
-* [Network configuration](https://wiki.archlinux.org/index.php/Network_configuration)
-* [Network bridge](https://wiki.archlinux.org/index.php/Network_bridge)
 * [Linux Containers](https://linuxcontainers.org/)
 * [Linux Containers - LXC - Introduction](https://linuxcontainers.org/lxc/introduction/)
+* [Linux Containers - ArchWiki](https://wiki.archlinux.org/index.php/Linux_Containers)
+* [Network configuration - ArchWiki](https://wiki.archlinux.org/index.php/Network_configuration)
+* [Network bridge - ArchWiki](https://wiki.archlinux.org/index.php/Network_bridge)
 * [LXC - Debian Wiki](https://wiki.debian.org/LXC)
 * [LXC/SimpleBridge - Debian Wiki](https://wiki.debian.org/LXC/SimpleBridge)
