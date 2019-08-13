@@ -16,7 +16,7 @@ LXC 2.0 y 3.0 son versiones LTS (soporte extendido), la primera tendrá soporte 
 pacman -S lxc
 ```
 
-El paquete `lxc` instala `bridge-utils` y `dnsmasq-base`, necesarios para el correcto funcionamiento de la herramienta `lxc-net`, que permite configurar un bridge simple para los contenedores. Sin embargo, podemos prescindir de esta herramienta como se verá más adelante. Esta guía utiliza el modelo de red en el que se usa un bridge compartido entre el host y los guests.
+El paquete `lxc` sugiere la instalación de `dnsmasq`, necesario para el correcto funcionamiento de la herramienta `lxc-net`, que permite configurar un bridge simple para los contenedores. Sin embargo, podemos prescindir de esta herramienta como se verá más adelante. Esta guía utiliza el modelo de red en el que se usa un bridge compartido entre el host y los guests.
 
 Para poder crear contenedores de Debian/Ubuntu, debemos instalar además:
 
@@ -69,7 +69,12 @@ SkipForwardingDelay=yes
 
 Activar las interfaces de red.
 
-`netctl enable enp2s0 bridge`
+```
+systemctl stop lxc-net
+systemctl disable lxc-net
+netctl stop-all
+netctl enable enp2s0 bridge
+```
 
 Reiniciar el host.
 
@@ -95,7 +100,7 @@ lxc.network.hwaddr = 00:16:3e:xx:xx:xx
 
 ## Administración de contenedores
 
-A diferencia del paquete LXC en Debian/Ubuntu, el disponible en Arch Linux no contiene las plantillas de creación y configuración de contenedores distintos de la propia distribución; sin embargo, es posible agregarlos. Para ello, se debe extraer el contenido del paquete de Debian/Ubuntu en los subdirectorios existentes en `/usr/share/lxc/config` y `/usr/share/lxc/templates`.
+A diferencia del paquete LXC en Debian/Ubuntu, el disponible en Arch Linux no contiene las plantillas de creación y configuración de contenedores distintos de la propia distribución; sin embargo, es posible agregarlos. Para ello, se debe extraer el contenido del paquete `lxc-templates` de Debian/Ubuntu en los subdirectorios existentes en `/usr/share/lxc/config` y `/usr/share/lxc/templates`.
 
 ### Crear contenedores
 
