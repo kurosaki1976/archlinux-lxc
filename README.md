@@ -1,5 +1,10 @@
 # Instalación y configuración de LXC en Arch Linux
 
+## Autores
+
+- [Yoel Torres Vázquez - oneohthree](yoel.torres.v@gmail.com)
+- [Ixen Rodríguez Pérez - kurosaki1976](ixenrp1976@gmail.com)
+
 ## Breve introducción a LXC
 
 LXC es una interface de espacio de usuario para el soporte de contenedores sobre el kernel de Linux. Permite crear y administrar contenedores de sistemas o aplicaciones a través de herramientas sencillas y una potente API.
