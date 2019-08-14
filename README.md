@@ -97,10 +97,10 @@ lxc.net.0.flags = up
 Es posible también utilizar una plantilla para los nuevos contenedores. Editar el archivo `/etc/lxc/default.conf` como sigue:
 
 ```
-lxc.network.type = veth
-lxc.network.link = br0
-lxc.network.flags = up
-lxc.network.hwaddr = 00:16:3e:xx:xx:xx
+lxc.net.0.type = veth
+lxc.net.0.link = br0
+lxc.net.0.flags = up
+lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx
 ```
 
 ## Administración de contenedores
