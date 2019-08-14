@@ -176,6 +176,7 @@ El objetivo de esta sencilla guía es proporcionar un entorno LXC funcional sobr
 
 * [Linux Containers](https://linuxcontainers.org/)
 * [Linux Containers - LXC - Introduction](https://linuxcontainers.org/lxc/introduction/)
+* [Instalación y configuración de LXC en Debian Stretch](https://www.sysadminsdecuba.com/2019/08/instalacion-y-configuracion-de-lxc-en-debian-stretch/)
 * [Linux Containers - ArchWiki](https://wiki.archlinux.org/index.php/Linux_Containers)
 * [Network configuration - ArchWiki](https://wiki.archlinux.org/index.php/Network_configuration)
 * [Network bridge - ArchWiki](https://wiki.archlinux.org/index.php/Network_bridge)
