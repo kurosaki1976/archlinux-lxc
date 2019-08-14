@@ -1,0 +1,4 @@
+Description='Ethernet Interface'
+Interface=enp2s0
+Connection=ethernet
+IP=no
