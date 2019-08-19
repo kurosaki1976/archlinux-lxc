@@ -1,0 +1,19 @@
+lxc.net.0.type = veth
+lxc.net.0.link = vmbr0
+lxc.net.0.flags = up
+lxc.net.0.hwaddr = 00:16:3e:c6:64:cc
+lxc.net.0.ipv4.address = 192.168.0.100/24
+lxc.net.0.ipv4.gateway = 192.168.0.254
+lxc.rootfs.path = dir:/var/lib/lxc/buster/rootfs
+
+lxc.include = /usr/share/lxc/config/debian.common.conf
+
+lxc.tty.max = 4
+lxc.uts.name = buster
+lxc.arch = amd64
+lxc.pty.max = 1024
+
+lxc.cgroup.cpuset.cpus = 1-2
+lxc.cgroup.cpu.shares = 1024
+lxc.cgroup.memory.limit_in_bytes = 768M
+lxc.cgroup.memory.memsw.limit_in_bytes = 1G

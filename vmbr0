@@ -1,0 +1,13 @@
+Description='Bridge Interface'
+Interface=vmbr0
+Connection=bridge
+BindsToInterfaces=enp2s0
+IP=static
+Address=('192.168.0.1/24')
+Gateway='192.168.0.254'
+DNS=('8.8.8.8 8.8.4.4')
+Hostname="host.dominio.tld"
+DNSDomain="dominio.tld"
+DNSSearch="dominio.tld"
+SkipNoCarrier=yes
+SkipForwardingDelay=yes

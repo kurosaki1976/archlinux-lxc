@@ -36,7 +36,7 @@ MIRRORLIST_URL=${MIRRORLIST_URL:-https://mirrors.fedoraproject.org/mirrorlist}
 local_state_dir="/var"
 lxc_path="/var/lib/lxc"
 lxc_template_config="/usr/share/lxc/config"
-lxc_default_conf="/etc/lxc/default.conf"
+lxc_default_conf="/usr/etc/lxc/default.conf"
 
 # allows the cache directory to be set by environment variable
 LXC_CACHE_PATH="${LXC_CACHE_PATH:-"${local_state_dir}/cache/lxc"}"
