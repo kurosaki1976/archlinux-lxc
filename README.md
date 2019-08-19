@@ -188,25 +188,25 @@ Detener un contenedor terminando todos los procesos activos
 lxc-stop -k -n <nombre-del-contenedor>
 ```
 
-Clonar un contenedor
+### Clonar un contenedor
 
 ```
 lxc-copy -n <nombre-del-contenedor> -N <nombre-nuevo-contenedor> -s
 ```
 
-Eliminar un contenedor
+### Eliminar un contenedor
 
 ```
 lxc-destroy -n <nombre-del-contenedor> -f
 ```
 
-Listar contenedores
+### Listar contenedores
 
 ```
 lxc-ls --fancy
 ```
 
-Cambiar contraseña de root
+### Cambiar contraseña de root
 
 ```
 lxc-attach -n <nombre-del-contenedor> passwd
