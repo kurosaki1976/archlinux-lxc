@@ -2,8 +2,8 @@
 
 ## Autores
 
-- [Yoel Torres Vázquez - oneohthree](yoel.torres.v@gmail.com)
 - [Ixen Rodríguez Pérez - kurosaki1976](ixenrp1976@gmail.com)
+- [Yoel Torres Vázquez - oneohthree](yoel.torres.v@gmail.com)
 
 ## Breve introducción a LXC
 
@@ -17,7 +17,7 @@ LXC 2.0 y 3.0 son versiones LTS (soporte extendido), la primera tendrá soporte 
 
 ## Instalación de paquetes necesarios
 
-```
+```bash
 pacman -S lxc lxcfs
 ```
 
@@ -26,7 +26,7 @@ Por otro lado, el paquete `lxcfs` permite definir los parámetros de límite de 
 
 Un ejemplo de configuración con estos parámetros definidos, luciría así:
 
-```
+```bash
 lxc.cgroup.cpuset.cpus = 1-2
 lxc.cgroup.cpu.shares = 1024
 lxc.cgroup.memory.limit_in_bytes = 768M
@@ -35,7 +35,7 @@ lxc.cgroup.memory.memsw.limit_in_bytes = 1G
 
 Activar el servicio `lxcfs`.
 
-```
+```bash
 systemctl start lxcfs
 systemctl enable lxcfs
 
@@ -43,7 +43,7 @@ systemctl enable lxcfs
 
 Para poder crear contenedores de Debian/Ubuntu, debemos instalar además:
 
-```
+```bash
 pacman -S debootstrap debian-archive-keyring ubuntu-keyring
 ```
 
@@ -55,14 +55,14 @@ A un contenedor típico se le puede asignar su propia interface de red física (
 
 En este caso se hará uso de `veth` con `host-shared bridge`. Suponiendo que la interfaz de red se llama `enp2s0`, se debe crear los archivos `/etc/netctl/enp2s0` y `/etc/netctl/vmbr0` como sigue:
 
-```
+```bash
 Description='Ethernet Interface'
 Interface=enp2s0
 Connection=ethernet
 IP=no
 ```
 
-```
+```bash
 Description='Bridge Interface'
 Interface=vmbr0
 Connection=bridge
@@ -80,7 +80,7 @@ SkipForwardingDelay=yes
 
 En la configuración anterior se hace uso de una dirección de red estática en el `bridge`, de existir un servidor DHCP se debe configurar como sigue:
 
-```
+```bash
 Description='Bridge Interface'
 Interface=vmbr0
 Connection=bridge
@@ -92,7 +92,7 @@ SkipForwardingDelay=yes
 
 Activar las interfaces de red.
 
-```
+```bash
 systemctl stop lxc-net
 systemctl disable lxc-net
 netctl stop-all
@@ -103,7 +103,7 @@ Reiniciar el host.
 
 La sección `network` en la configuración del contenedor, almacenada en el host en `/var/lib/lxc/<nombre-del-contenedor>/config` luciría como sigue:
 
-```
+```bash
 lxc.net.0.type = veth
 lxc.net.0.hwaddr = 00:16:3e:c6:64:cc
 lxc.net.0.ipv4.address = 192.168.0.1/24
@@ -114,7 +114,7 @@ lxc.net.0.flags = up
 
 Es posible también utilizar una plantilla para los nuevos contenedores. Editar el archivo `/etc/lxc/default.conf` como sigue:
 
-```
+```bash
 lxc.net.0.type = veth
 lxc.net.0.link = vmbr0
 lxc.net.0.flags = up
@@ -131,26 +131,26 @@ Otra opción es descargar los fuentes del sitio oficial [LXC Downloads](https://
 
 Los contenedores se descargan utilizando `debootstrap`, posteriormente un sistema Debian mínimo se instala en `/var/lib/lxc/<nombre-del-contenedor>/rootfs` listo para ejecutarse y ser usado.
 
-```
+```bash
 lxc-create -n <nombre-del-contenedor> -t debian -- -r buster
 ```
 
 Si se accede a Internet a través de un proxy, es posible especificarlo en variables de entorno para descargar los archivos del contenedor.
 
-```
+```bash
 export http_proxy=http://usuario:contraseña@proxy:puerto/
 export https_proxy=http://usuario:contraseña@proxy:puerto/
 ```
 
 Si se tiene un mirror del repositorio de paquetes de Debian/Ubuntu también es posible pasar los parámetros `--mirror=MIRROR` y `--security-mirror=MIRROR` quedando así:
 
-```
+```bash
 lxc-create -n <nombre-del-contenedor> -t debian -- -r buster --mirror=http//debian.dominio.tld/buster --security-mirror=http//debian.dominio.tld/buster-security
 ```
 
 Si se desea crear el contenedor con un tamaño específico de dispositivo de bloques, es decir emulando un disco duro.
 
-```
+```bash
 lxc-create -n <nombre-del-contenedor> -t debian -B loop --fstype ext4 --fssize 5G -- -r buster --mirror=http//debian.dominio.tld/buster --security-mirror=http//debian.dominio.tld/buster-security
 ```
 
@@ -158,13 +158,13 @@ lxc-create -n <nombre-del-contenedor> -t debian -B loop --fstype ext4 --fssize 5
 
 Iniciar un contenedor en primer plano
 
-```
+```bash
 lxc-start -n <nombre-del-contenedor> -F
 ```
 
 Iniciar un contenedor en segundo plano
 
-```
+```bash
 lxc-start -n <nombre-del-contenedor>
 ```
 
@@ -172,43 +172,43 @@ Para iniciar automáticamente durante el arranque del host, editar la configurac
 
 Ejecutar una consola en el contenedor
 
-```
+```bash
 lxc-console -n <nombre-del-contenedor> -t 0
 ```
 
 Detener un contenedor enviando un apagado limpio
 
-```
+```bash
 lxc-stop -n <nombre-del-contenedor>
 ```
 
 Detener un contenedor terminando todos los procesos activos
 
-```
+```bash
 lxc-stop -k -n <nombre-del-contenedor>
 ```
 
 ### Clonar un contenedor
 
-```
+```bash
 lxc-copy -n <nombre-del-contenedor> -N <nombre-nuevo-contenedor> -s
 ```
 
 ### Eliminar un contenedor
 
-```
+```bash
 lxc-destroy -n <nombre-del-contenedor> -f
 ```
 
 ### Listar contenedores
 
-```
+```bash
 lxc-ls --fancy
 ```
 
 ### Cambiar contraseña de root
 
-```
+```bash
 lxc-attach -n <nombre-del-contenedor> passwd
 ```
 
@@ -218,7 +218,7 @@ Los contenedores que se creen usando las plantillas predefinidas en el paquete `
 
 Extracto de fichero plantilla `/usr/share/lxc/templates/lxc-debian`.
 
-```
+```bash
     packages=\
 $init,\
 ifupdown,\
@@ -235,7 +235,7 @@ Esto puede ocasionar molestias a la hora de la instalación y configuración de 
 
 Una opción sería modificar el fichero plantilla de la distribución a utilizar agregando paquetes al listado predefindo. Sin embargo, esta solución no es idónea para usuarios noveles quienes por lo general desconocen qué paquetes son los encargados de hacer funcionar muchos de los comandos que se ejecutan en la consola; para ellos, la solución ideal sería solo agregar al listado, el paquete `aptitude` y una vez creado y teniendo funcionando el contenedor, ejecutar la selección de tareas de instalación de paquetes que dejarían el sistema con una configuración mínima completamente operativa.
 
-```
+```bash
 aptitude install -y ~pstandard ~prequired ~pimportant
 ```
 
